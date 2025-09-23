@@ -15,6 +15,10 @@ app.use(cors());
 //API ROUTES
 app.get('/',(req,res)=> res.send('API is running...'));
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+// Only listen if not running in Vercel (for local dev)
+if (process.env.VERCEL !== '1') {
+	app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
 
 export default app;
