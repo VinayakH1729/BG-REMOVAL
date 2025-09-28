@@ -15,8 +15,14 @@ const connectDB = async () => {
     });
 
     try {
-        await mongoose.connect(`${process.env.MONGODB_URI}/bg-removal`);
+        // Use the full MONGODB_URI (with database name if provided)
+        const mongoUri = process.env.MONGODB_URI.includes('?') 
+            ? process.env.MONGODB_URI 
+            : `${process.env.MONGODB_URI}/bg-removal`;
+        
+        await mongoose.connect(mongoUri);
         console.log('MongoDB connection established');
+        console.log('Connected to:', mongoUri.replace(/\/\/[^@]*@/, '//***:***@')); // Hide credentials in logs
     } catch (error) {
         console.error('Failed to connect to MongoDB:', error);
         process.exit(1);

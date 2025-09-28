@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # MongoDB database
+  mongodb:
+    image: mongo:7-jammy
+    container_name: bg-removal-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    networks:
+      - bg-removal-network
+
+  # Backend server (using Docker Hub image)
+  server:
+    image: superv65/bg-removal-server:latest
+    container_name: bg-removal-server
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://admin:password@mongodb:27017/bgremoveldb?authSource=admin
+    depends_on:
+      - mongodb
+    networks:
+      - bg-removal-network
+
+  # Frontend client (using Docker Hub image)
+  client:
+    image: superv65/bg-removal-client:latest
+    container_name: bg-removal-client
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_SERVER_URL=http://localhost:4000
+    depends_on:
+      - server
+    networks:
+      - bg-removal-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  bg-removal-network:
+    driver: bridge
