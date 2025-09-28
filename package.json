@@ -2,7 +2,7 @@
   "name": "bg-removal-fullstack",
   "version": "1.0.0",
   "scripts": {
-    "build": "cd client && npm install && npm run build",
+    "build": "cd client && npm ci && npm run build",
     "start": "cd Server && node server.js",
     "dev:client": "cd client && npm run dev",
     "dev:server": "cd Server && npm run server",
