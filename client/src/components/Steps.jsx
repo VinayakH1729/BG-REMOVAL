@@ -10,8 +10,8 @@ const Steps = () => {
             <div className='flex items-start gap-4 bg-white  drop-shadow-md p-7 pb-10 rounded hover:scale-105 transition-all duration-500 '>
                 <img className='max-w-9' src={assets.upload_icon} alt="" />
                 <div>
-                    <p className='text-xl font-medium'>Upload your image</p>
-                    <p className='text-sm text-neutral-500 mt-1'>This is a demo text, will replace it later. <br />This is demo..</p>
+                    <p className='text-xl font-medium'>Sign in and upload</p>
+                    <p className='text-sm text-neutral-500 mt-1'>Create your account and upload your image <br />to get started with background removal.</p>
                 </div>
             </div>
 
@@ -19,7 +19,7 @@ const Steps = () => {
                 <img className='max-w-9' src={assets.remove_bg_icon} alt="" />
                 <div>
                     <p className='text-xl font-medium'>Remove background</p>
-                    <p className='text-sm text-neutral-500 mt-1'>This is a demo text, will replace it later. <br />This is demo..</p>
+                    <p className='text-sm text-neutral-500 mt-1'>Our AI processes your image instantly <br />removing the background automatically.</p>
                 </div>
             </div>
 
@@ -27,7 +27,7 @@ const Steps = () => {
                 <img className='max-w-9' src={assets.download_icon} alt="" />
                 <div>
                     <p className='text-xl font-medium'>Download image</p>
-                    <p className='text-sm text-neutral-500 mt-1'>This is a demo text, will replace it later. <br />This is demo..</p>
+                    <p className='text-sm text-neutral-500 mt-1'>Download your processed image with <br />transparent background in PNG format.</p>
                 </div>
             </div>
 

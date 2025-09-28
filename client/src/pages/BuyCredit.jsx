@@ -1,9 +1,2 @@
-import React from 'react'
-
-const BuyCredit = () => {
-  return (
-    <div>Future Work</div>
-  )
-}
-
-export default BuyCredit
+// Removed: payments/credits are out of scope. Keeping the file empty to avoid import errors if referenced.
+export {}
