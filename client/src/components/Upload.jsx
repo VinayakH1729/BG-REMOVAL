@@ -16,8 +16,8 @@ const Upload = () => {
     const file = e.target.files?.[0];
     if (!file) return;
     
-    // Check authentication before processing
-    if (!isSignedIn) {
+    // Check authentication only for server mode
+    if (mode === 'server' && !isSignedIn) {
       openSignIn({});
       return;
     }
@@ -81,13 +81,14 @@ const Upload = () => {
         <div className='text-center mb-24 mt-10'>
             <input type="file" accept="image/*" id="upload2" hidden onChange={handleSelect}/>
             <label className={`inline-flex gap-3 px-8 py-3.5 rounded-full cursor-pointer m-auto hover:scale-105 transition-all duration-700 ${
-                isSignedIn 
+                (isSignedIn || mode === 'local') 
                     ? 'bg-gradient-to-r from-violet-600 to-fuchsia-500' 
                     : 'bg-gray-400'
             }`} htmlFor="upload2">
                 <img width={20} height={10} src={assets.upload_btn_icon} alt="" />
                 <p className='text-white text-sm'>
-                    {isSignedIn ? 'Upload Your Image' : 'Sign in to Upload'}
+                    {isSignedIn ? 'Upload Your Image' : 
+                     mode === 'local' ? 'Upload Your Image (Local/Free)' : 'Sign in to Upload'}
                 </p>
             </label>
         </div>

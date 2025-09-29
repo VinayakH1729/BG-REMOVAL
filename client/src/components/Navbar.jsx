@@ -15,7 +15,7 @@ const Navbar = () => {
         <img className="w-32 sm:w-44" src={assets.logo} alt="" />
       </Link>
       <div className="flex items-center gap-3">
-        <div className={`flex items-center rounded-full bg-gray-100 p-1 border border-gray-200 ${!isSignedIn ? 'opacity-50' : ''}`}>
+        <div className="flex items-center rounded-full bg-gray-100 p-1 border border-gray-200">
           <button
             type="button"
             onClick={() => isSignedIn && setMode('server')}
@@ -25,21 +25,21 @@ const Navbar = () => {
               mode === 'server' && isSignedIn
                 ? 'bg-gradient-to-r from-violet-600 to-fuchsia-500 text-white shadow'
                 : 'text-gray-700 hover:bg-white'
-            } ${!isSignedIn ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+            } ${!isSignedIn ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+            title={!isSignedIn ? 'Sign in required for server mode' : 'Server mode'}
           >
             Server
           </button>
           <button
             type="button"
-            onClick={() => isSignedIn && setMode('local')}
+            onClick={() => setMode('local')}
             aria-pressed={mode === 'local'}
-            title="Local (free)"
-            disabled={!isSignedIn}
-            className={`px-3 py-1 text-xs sm:text-sm rounded-full transition-all whitespace-nowrap ${
-              mode === 'local' && isSignedIn
+            title="Local processing (free, no sign-up required)"
+            className={`px-3 py-1 text-xs sm:text-sm rounded-full transition-all whitespace-nowrap cursor-pointer ${
+              mode === 'local'
                 ? 'bg-gradient-to-r from-violet-600 to-fuchsia-500 text-white shadow'
                 : 'text-gray-700 hover:bg-white'
-            } ${!isSignedIn ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+            }`}
           >
             Local <span className="hidden sm:inline">(free)</span>
           </button>

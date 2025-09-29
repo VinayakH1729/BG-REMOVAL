@@ -8,7 +8,7 @@ export const ImageProvider = ({ children }) => {
   const [processedImage, setProcessedImage] = useState(""); // data URL (png)
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [mode, setMode] = useState("server"); // "server" | "local"
+  const [mode, setMode] = useState("local"); // "server" | "local"
 
   const value = useMemo(
     () => ({

@@ -5,16 +5,16 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
 
 const Result = () => {
-  const { originalPreview, processedImage, loading, setProcessedImage, error } = useImage();
+  const { originalPreview, processedImage, loading, setProcessedImage, error, mode } = useImage();
   const navigate = useNavigate();
   const { isSignedIn, isLoaded } = useUser();
 
-  // Redirect to home if not authenticated
+  // Redirect to home if not authenticated AND using server mode
   useEffect(() => {
-    if (isLoaded && !isSignedIn) {
+    if (isLoaded && mode === 'server' && !isSignedIn) {
       navigate('/');
     }
-  }, [isSignedIn, isLoaded, navigate]);
+  }, [isSignedIn, isLoaded, navigate, mode]);
 
   const handleDownload = () => {
     if (!processedImage) return;
@@ -40,8 +40,8 @@ const Result = () => {
     );
   }
 
-  // Don't render anything if not authenticated (will redirect)
-  if (!isSignedIn) {
+  // Don't render anything if not authenticated AND using server mode (will redirect)
+  if (mode === 'server' && !isSignedIn) {
     return null;
   }
 
