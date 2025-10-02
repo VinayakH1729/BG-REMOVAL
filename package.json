@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "cd client && npm ci && npm run build",
+    "deploy": "cd client && npm run build && gh-pages -d dist",
     "start": "cd Server && node server.js",
     "dev:client": "cd client && npm run dev",
     "dev:server": "cd Server && npm run server",
