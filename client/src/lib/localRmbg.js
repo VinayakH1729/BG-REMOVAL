@@ -28,9 +28,17 @@ export async function initializeModel() {
 
   try {
     state.initializing = true;
-    env.allowLocalModels = false; // fetch from hub/CDN
-    if (env.backends?.onnx?.wasm) {
-      env.backends.onnx.wasm.proxy = true; // run in worker for responsiveness
+    
+    // Configure environment
+    env.allowLocalModels = false;
+    env.allowRemoteModels = true;
+    
+    // Configure WASM backend
+    if (env.backends?.onnx) {
+      env.backends.onnx.wasm = {
+        proxy: false, // Disable worker for compatibility
+        numThreads: 1,
+      };
     }
 
     state.model = await AutoModel.from_pretrained(MODEL_ID, {
